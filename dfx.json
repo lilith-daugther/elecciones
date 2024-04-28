@@ -1,0 +1,30 @@
+{
+  "canisters": {
+    "elecciones_backend": {
+      "build": "npx azle elecciones_backend",
+      "candid": "src/elecciones_backend/elecciones_backend.did",
+      "gzip": true,
+      "main": "src/elecciones_backend/src/index.ts",
+      "type": "custom",
+      "wasm": ".azle/elecciones_backend/elecciones_backend.wasm"
+    },
+    "elecciones_frontend": {
+      "dependencies": [
+        "elecciones_backend"
+      ],
+      "source": [
+        "src/elecciones_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "elecciones_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
