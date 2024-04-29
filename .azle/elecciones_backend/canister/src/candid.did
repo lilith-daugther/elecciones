@@ -1,3 +1,6 @@
 service: () -> {
-    greet: (text) -> (text) query;
+    authenticateVoter: (text, text) -> (variant {Ok:record {id:principal; nombre:text; password:text; segundoApellido:text; primerApellido:text}; Err:variant {UserDoesNotExiste:text}}) query;
+    createUser: (text, text, text, text) -> (record {id:principal; nombre:text; password:text; segundoApellido:text; primerApellido:text});
+    readUserById: (text) -> (opt record {id:principal; nombre:text; password:text; segundoApellido:text; primerApellido:text}) query;
+    readUsers: () -> (vec record {id:principal; nombre:text; password:text; segundoApellido:text; primerApellido:text}) query;
 }

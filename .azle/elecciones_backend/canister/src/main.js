@@ -30,7 +30,7 @@ function _extends() {
     };
     return _extends.apply(this, arguments);
 }
-var _class, _class1, _class2, _class3, _class4, _class5;
+var _class, _class1, _class2, _class3, _class4, _class5, _class6, _class7;
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -98904,8 +98904,62 @@ function Some(value) {
 var None = {
     None: null
 };
+function Opt2(t) {
+    return new AzleOpt(t);
+}
+var AzleOpt = (_class1 = class {
+    toBytes(data) {
+        return encode3(this, data);
+    }
+    fromBytes(bytes2) {
+        return decode3(this, bytes2);
+    }
+    getIdl(parents) {
+        return idl_exports.Opt(toIdl(this.innerType, parents));
+    }
+    constructor(t){
+        this.tsType = {};
+        this._azleKind = "AzleOpt";
+        this.innerType = t;
+    }
+}, _class1._azleKind = "AzleOpt", _class1);
+// node_modules/azle/src/lib/candid/types/constructed/record.ts
+function Record2(obj) {
+    return _extends({}, obj, {
+        tsType: {},
+        toBytes (data) {
+            return encode3(this, data);
+        },
+        fromBytes (bytes2) {
+            return decode3(this, bytes2);
+        },
+        getIdl (parents) {
+            return idl_exports.Record(toIdlMap(obj, parents));
+        }
+    });
+}
+// node_modules/azle/src/lib/candid/types/constructed/vec.ts
+var AzleVec = (_class2 = class {
+    toBytes(data) {
+        return encode3(this, data);
+    }
+    fromBytes(bytes2) {
+        return decode3(this, bytes2);
+    }
+    getIdl(parents) {
+        return idl_exports.Vec(toIdl(this.innerType, parents));
+    }
+    constructor(t){
+        this.tsType = {};
+        this._azleKind = "AzleVec";
+        this.innerType = t;
+    }
+}, _class2._azleKind = "AzleVec", _class2);
+function Vec2(t) {
+    return new AzleVec(t);
+}
 // node_modules/azle/src/lib/candid/types/primitive/nats/nat.ts
-var AzleNat = (_class1 = class {
+var AzleNat = (_class3 = class {
     static toBytes(data) {
         return encode3(this, data);
     }
@@ -98918,10 +98972,10 @@ var AzleNat = (_class1 = class {
     constructor(){
         this._azleKind = "AzleNat";
     }
-}, _class1._azleKind = "AzleNat", _class1);
+}, _class3._azleKind = "AzleNat", _class3);
 var nat = AzleNat;
 // node_modules/azle/src/lib/candid/types/primitive/null.ts
-var AzleNull = (_class2 = class {
+var AzleNull = (_class4 = class {
     static toBytes(data) {
         return encode3(this, data);
     }
@@ -98934,10 +98988,10 @@ var AzleNull = (_class2 = class {
     constructor(){
         this._azleKind = "AzleNull";
     }
-}, _class2._azleKind = "AzleNull", _class2);
+}, _class4._azleKind = "AzleNull", _class4);
 var Null2 = AzleNull;
 // node_modules/azle/src/lib/candid/types/primitive/text.ts
-var AzleText = (_class3 = class {
+var AzleText = (_class5 = class {
     static toBytes(data) {
         return encode3(this, data);
     }
@@ -98950,7 +99004,7 @@ var AzleText = (_class3 = class {
     constructor(){
         this._azleKind = "AzleText";
     }
-}, _class3._azleKind = "AzleText", _class3);
+}, _class5._azleKind = "AzleText", _class5);
 var text = AzleText;
 // node_modules/azle/src/lib/candid/types/reference/service/canister_function/query_update.ts
 function createQueryMethods(canisterOptions) {
@@ -99106,7 +99160,7 @@ function Canister(canisterOptions) {
     return result;
 }
 // node_modules/azle/src/lib/candid/types/reference/principal.ts
-var Principal3 = (_class4 = class extends Principal {
+var Principal3 = (_class6 = class extends Principal {
     static toBytes(data) {
         return encode3(this, data);
     }
@@ -99116,7 +99170,7 @@ var Principal3 = (_class4 = class extends Principal {
     static getIdl(_parents) {
         return idl_exports.Principal;
     }
-}, _class4._azleKind = "Principal", _class4);
+}, _class6._azleKind = "Principal", _class6);
 // node_modules/azle/src/lib/candid/serde/decode.ts
 function decode3(candidType, data) {
     if (Array.isArray(candidType)) {
@@ -99188,19 +99242,29 @@ function Result(ok, err) {
     return new AzleResult(ok, err);
 }
 ((Result2)=>{
-    function Ok(value) {
+    function Ok2(value) {
         return {
             Ok: value
         };
     }
-    Result2.Ok = Ok;
-    function Err(value) {
+    Result2.Ok = Ok2;
+    function Err2(value) {
         return {
             Err: value
         };
     }
-    Result2.Err = Err;
+    Result2.Err = Err2;
 })(Result || (Result = {}));
+function Ok(value) {
+    return {
+        Ok: value
+    };
+}
+function Err(value) {
+    return {
+        Err: value
+    };
+}
 // node_modules/azle/src/lib/candid/serde/visitors/visit/variant/azle_variant.ts
 function visitAzleVariant(visitor, fields, data) {
     const candidFields = fields.reduce((acc, [memberName, memberIdl])=>{
@@ -99334,7 +99398,7 @@ function encodeMultiple(candidTypes, data) {
     return new Uint8Array(idl_exports.encode(idls, values));
 }
 // node_modules/azle/src/lib/candid/types/primitive/nats/nat64.ts
-var AzleNat64 = (_class5 = class {
+var AzleNat64 = (_class7 = class {
     static toBytes(data) {
         return encode3(this, data);
     }
@@ -99347,7 +99411,7 @@ var AzleNat64 = (_class5 = class {
     constructor(){
         this._azleKind = "AzleNat64";
     }
-}, _class5._azleKind = "AzleNat64", _class5);
+}, _class7._azleKind = "AzleNat64", _class7);
 var nat64 = AzleNat64;
 // node_modules/azle/src/lib/ic/call_raw.ts
 function callRaw(canisterId, method2, argsRaw, payment) {
@@ -100050,6 +100114,168 @@ function query(paramCandidTypes, returnCandidType, callback, methodArgs) {
         guard: methodArgs == null ? void 0 : methodArgs.guard
     };
 }
+// node_modules/azle/src/lib/canister_methods/methods/update.ts
+function update(paramCandidTypes, returnCandidType, callback, methodArgs) {
+    const finalCallback = callback === void 0 ? void 0 : (...args)=>{
+        var _methodArgs_manual;
+        executeMethod("update", args, callback, paramCandidTypes, returnCandidType, (_methodArgs_manual = methodArgs == null ? void 0 : methodArgs.manual) != null ? _methodArgs_manual : false);
+    };
+    return {
+        mode: "update",
+        callback: finalCallback,
+        paramCandidTypes,
+        returnCandidType,
+        async: callback === void 0 ? false : isAsync(callback),
+        guard: methodArgs == null ? void 0 : methodArgs.guard
+    };
+}
+// node_modules/azle/src/lib/stable_structures/stable_b_tree_map.ts
+function StableBTreeMap(memoryIdNumber, keySerializable = stableJson, valueSerializable = stableJson) {
+    const memoryId = memoryIdNumber.toString();
+    if (globalThis._azleIc !== void 0) {
+        globalThis._azleIc.stableBTreeMapInit(memoryId);
+    }
+    isSerializable(keySerializable);
+    isSerializable(valueSerializable);
+    return {
+        /**
+     * Checks if the given key exists in the map.
+     * @param key the key to check.
+     * @returns `true` if the key exists in the map, `false` otherwise.
+     */ containsKey (key) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            const encodedKey = keySerializable.toBytes(key).buffer;
+            return globalThis._azleIc.stableBTreeMapContainsKey(memoryId, encodedKey);
+        },
+        /**
+     * Retrieves the value stored at the provided key.
+     * @param key the location from which to retrieve.
+     * @returns the value associated with the given key, if it exists.
+     */ get (key) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            const encodedKey = keySerializable.toBytes(key).buffer;
+            const encodedResult = globalThis._azleIc.stableBTreeMapGet(memoryId, encodedKey);
+            if (encodedResult === void 0) {
+                return None;
+            } else {
+                return Some(valueSerializable.fromBytes(new Uint8Array(encodedResult)));
+            }
+        },
+        /**
+     * Inserts a value into the map at the provided key.
+     * @param key the location at which to insert.
+     * @param value the value to insert.
+     * @returns the previous value of the key, if present.
+     */ insert (key, value) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            const encodedKey = keySerializable.toBytes(key).buffer;
+            const encodedValue = valueSerializable.toBytes(value).buffer;
+            const encodedResult = globalThis._azleIc.stableBTreeMapInsert(memoryId, encodedKey, encodedValue);
+            if (encodedResult === void 0) {
+                return None;
+            } else {
+                return Some(valueSerializable.fromBytes(new Uint8Array(encodedResult)));
+            }
+        },
+        /**
+     * Checks if the map is empty.
+     * @returns `true` if the map contains no elements, `false` otherwise.
+     */ isEmpty () {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            return globalThis._azleIc.stableBTreeMapIsEmpty(memoryId);
+        },
+        /**
+     * Retrieves the items in the map in sorted order.
+     * @param startIndex the starting index to begin retrieval
+     * @param length the number of items to retrieve
+     * @returns tuples representing key/value pairs.
+     */ items (startIndex, length) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            var _startIndex_toString, _length_toString;
+            const encodedItems = globalThis._azleIc.stableBTreeMapItems(memoryId, (_startIndex_toString = startIndex == null ? void 0 : startIndex.toString()) != null ? _startIndex_toString : "0", (_length_toString = length == null ? void 0 : length.toString()) != null ? _length_toString : "NOT_SET");
+            return encodedItems.map(([encodedKey, encodedValue])=>{
+                return [
+                    keySerializable.fromBytes(new Uint8Array(encodedKey)),
+                    valueSerializable.fromBytes(new Uint8Array(encodedValue))
+                ];
+            });
+        },
+        /**
+     * The keys for each element in the map in sorted order.
+     * @param startIndex the starting index to begin retrieval
+     * @param length the number of keys to retrieve
+     * @returns they keys in the map.
+     */ keys (startIndex, length) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            var _startIndex_toString, _length_toString;
+            const encodedKeys = globalThis._azleIc.stableBTreeMapKeys(memoryId, (_startIndex_toString = startIndex == null ? void 0 : startIndex.toString()) != null ? _startIndex_toString : "0", (_length_toString = length == null ? void 0 : length.toString()) != null ? _length_toString : "NOT_SET");
+            return encodedKeys.map((encodedKey)=>{
+                return keySerializable.fromBytes(new Uint8Array(encodedKey));
+            });
+        },
+        /**
+     * Checks to see how many elements are in the map.
+     * @returns the number of elements in the map.
+     */ len () {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            const candidEncodedLen = globalThis._azleIc.stableBTreeMapLen(memoryId);
+            return decode3(nat64, candidEncodedLen);
+        },
+        /**
+     * Removes a key from the map.
+     * @param key the location from which to remove.
+     * @returns the previous value at the key if it exists, `null` otherwise.
+     */ remove (key) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            const encodedKey = keySerializable.toBytes(key).buffer;
+            const encodedValue = globalThis._azleIc.stableBTreeMapRemove(memoryId, encodedKey);
+            if (encodedValue === void 0) {
+                return None;
+            } else {
+                return Some(valueSerializable.fromBytes(new Uint8Array(encodedValue)));
+            }
+        },
+        /**
+     * The values in the map in sorted order.
+     * @param startIndex the starting index to begin retrieval
+     * @param length the number of values to retrieve
+     * @returns the values in the map.
+     */ values (startIndex, length) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            var _startIndex_toString, _length_toString;
+            const encodedValues = globalThis._azleIc.stableBTreeMapValues(memoryId, (_startIndex_toString = startIndex == null ? void 0 : startIndex.toString()) != null ? _startIndex_toString : "0", (_length_toString = length == null ? void 0 : length.toString()) != null ? _length_toString : "NOT_SET");
+            return encodedValues.map((encodedValue)=>{
+                return valueSerializable.fromBytes(new Uint8Array(encodedValue));
+            });
+        }
+    };
+}
+function isSerializable(obj) {
+    if (obj.toBytes === void 0) {
+        throw new Error(`value must have a toBytes method`);
+    }
+    if (obj.fromBytes === void 0) {
+        throw new Error(`value must have a fromBytes method`);
+    }
+}
 // node_modules/@dfinity/principal/lib/esm/utils/base32.js
 var alphabet2 = "abcdefghijklmnopqrstuvwxyz234567";
 var lookupTable2 = /* @__PURE__ */ Object.create(null);
@@ -100503,11 +100729,64 @@ var Principal4 = class _Principal {
     }
 };
 // src/elecciones_backend/src/index.ts
+var Voter = Record2({
+    id: Principal3,
+    nombre: text,
+    primerApellido: text,
+    segundoApellido: text,
+    password: text
+});
+var AplicationError = Variant2({
+    UserDoesNotExiste: text
+});
+var users = StableBTreeMap(0);
+function generateId() {
+    const randomBytes = new Array(29).fill(0).map((_)=>Math.floor(Math.random() * 256));
+    return Principal3.fromUint8Array(Uint8Array.from(randomBytes));
+}
 var src_default = Canister({
-    greet: query([
+    createUser: update([
+        text,
+        text,
+        text,
         text
-    ], text, (name)=>{
-        return `Hello, ${name}!`;
+    ], Voter, (nombre, primerApellido, segundoApellido, password)=>{
+        const id2 = generateId();
+        const user = {
+            id: id2,
+            nombre,
+            primerApellido,
+            segundoApellido,
+            password
+        };
+        users.insert(user.id, user);
+        return user;
+    }),
+    readUsers: query([], Vec2(Voter), ()=>{
+        return users.values();
+    }),
+    readUserById: query([
+        text
+    ], Opt2(Voter), (id2)=>{
+        return users.get(Principal3.fromText(id2));
+    }),
+    authenticateVoter: query([
+        text,
+        text
+    ], Result(Voter, AplicationError), (id2, password)=>{
+        const userOpt = users.get(Principal3.fromText(id2));
+        if (userOpt.isNone()) {
+            return Err({
+                UserDoesNotExist: `El usuario con ID ${id2} no existe.`
+            });
+        }
+        const user = userOpt.unwrap();
+        if (user.password !== password) {
+            return Err({
+                UserDoesNotExist: `Contrase\xF1a incorrecta para el usuario con ID ${id2}.`
+            });
+        }
+        return Ok(user);
     })
 });
 // <stdin>
